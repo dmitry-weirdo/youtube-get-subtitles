@@ -10,7 +10,7 @@ LANGUAGE_PRIORITY = ("ru", "en")
 
 
 def fetch_transcript(video_id: str) -> list[dict]:
-    api = YouTubeTranscriptApi(
+    api = YouTubeTranscriptApi()
     try:
         transcript = api.fetch(video_id, languages=LANGUAGE_PRIORITY)
         return transcript.to_raw_data()
