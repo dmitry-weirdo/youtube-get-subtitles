@@ -24,6 +24,16 @@ python main.py <youtube-url-or-video-id> [output-dir]
 python main.py https://www.youtube.com/watch?v=o4_Etmw9Zy8
 ```
 
+Опционально — Webshare-прокси (оба параметра обязательны вместе):
+
+```bash
+python main.py https://www.youtube.com/watch?v=o4_Etmw9Zy8 \
+  --webshare-proxy-username USER \
+  --webshare-proxy-password PASS
+```
+
+Или через переменные окружения `WEBSHARE_PROXY_USERNAME` и `WEBSHARE_PROXY_PASSWORD`.
+
 Результат по умолчанию сохраняется в `output/`:
 
 - `{videoId}.srt` — полные субтитры с таймкодами
@@ -45,6 +55,16 @@ python bot.py --token YOUR_BOT_TOKEN
 set TELEGRAM_BOT_TOKEN=YOUR_BOT_TOKEN
 python bot.py
 ```
+
+Опционально — Webshare-прокси для обхода блокировок YouTube:
+
+```bash
+python bot.py --token YOUR_BOT_TOKEN \
+  --webshare-proxy-username USER \
+  --webshare-proxy-password PASS
+```
+
+Или через переменные окружения `WEBSHARE_PROXY_USERNAME` и `WEBSHARE_PROXY_PASSWORD` (оба нужны вместе).
 
 Отправьте боту ссылку на YouTube-видео или video ID — в ответ придут файлы `.srt` и `.txt`.
 
@@ -69,6 +89,8 @@ python youtube-subtitles-bot.pyz --token YOUR_BOT_TOKEN
 
 ```bash
 export TELEGRAM_BOT_TOKEN=YOUR_BOT_TOKEN
+export WEBSHARE_PROXY_USERNAME=USER
+export WEBSHARE_PROXY_PASSWORD=PASS
 python youtube-subtitles-bot.pyz
 ```
 

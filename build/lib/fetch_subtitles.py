@@ -4,13 +4,30 @@ from youtube_transcript_api._errors import (
     TranscriptsDisabled,
     VideoUnavailable,
 )
+from youtube_transcript_api.proxies import ProxyConfig, WebshareProxyConfig
 
 
 LANGUAGE_PRIORITY = ("ru", "en")
 
 
-def fetch_transcript(video_id: str) -> list[dict]:
-    api = YouTubeTranscriptApi()
+def resolve_webshare_proxy_config(
+    username: str | None, password: str | None
+) -> WebshareProxyConfig | None:
+    if not username and not password:
+        return None
+    if not username or not password:
+        raise ValueError(
+            "Both webshare proxy username and password are required. "
+            "Use --webshare-proxy-username/--webshare-proxy-password "
+            "or WEBSHARE_PROXY_USERNAME/WEBSHARE_PROXY_PASSWORD."
+        )
+    return WebshareProxyConfig(proxy_username=username, proxy_password=password)
+
+
+def fetch_transcript(
+    video_id: str, proxy_config: ProxyConfig | None = None
+) -> list[dict]:
+    api = YouTubeTranscriptApi(proxy_config=proxy_config)
     try:
         transcript = api.fetch(video_id, languages=LANGUAGE_PRIORITY)
         return transcript.to_raw_data()
