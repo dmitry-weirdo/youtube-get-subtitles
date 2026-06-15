@@ -1,0 +1,26 @@
+[project]
+name = "youtube-get-subtitles"
+version = "0.1.0"
+requires-python = ">=3.10"
+dependencies = [
+    "youtube-transcript-api>=1.0.0",
+    "python-telegram-bot>=21.0",
+]
+
+[project.scripts]
+youtube-subtitles-bot = "bot:main"
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+py-modules = [
+    "bot",
+    "video_id",
+    "fetch_subtitles",
+    "srt_writer",
+    "text_extractor",
+    "subtitle_pipeline",
+    "main",
+]

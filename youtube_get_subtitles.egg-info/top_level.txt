@@ -1,0 +1,7 @@
+bot
+fetch_subtitles
+main
+srt_writer
+subtitle_pipeline
+text_extractor
+video_id
